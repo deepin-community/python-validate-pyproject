@@ -1,15 +1,81 @@
-Source: template-repository
-Section: unknown
+Source: python-validate-pyproject
+Maintainer: Debian Python Team <team+python@tracker.debian.org>
+Uploaders:
+ Carsten Schoenert <c.schoenert@t-online.de>,
+Section: python
 Priority: optional
-Maintainer: Tsic404 <liuheng@deepin.org>
-Build-Depends: debhelper (>= 11)
-Standards-Version: 4.1.3
-Homepage: https://github.com/deepin-community/template-repository
-#Vcs-Browser: https://salsa.debian.org/debian/deepin-community-template-repository
-#Vcs-Git: https://salsa.debian.org/debian/deepin-community-template-repository.git
+Build-Depends:
+ debhelper-compat (= 13),
+ dh-sequence-python3,
+ dh-sequence-sphinxdoc,
+ furo <!nodoc>,
+ pybuild-plugin-pyproject,
+ python-pandas-doc <!nodoc>,
+ python-scipy-doc <!nodoc>,
+ python-setuptools-doc <!nodoc>,
+ python-sklearn-doc <!nodoc>,
+ python3-all,
+ python3-doc <!nodoc>,
+ python3-fastjsonschema <!nocheck> <!nodoc>,
+ python3-pytest <!nocheck>,
+ python3-pytest-cov <!nocheck>,
+ python3-setuptools,
+ python3-sphinx-copybutton <!nodoc>,
+ python3-sphinx-rtd-theme <!nodoc>,
+ sphinx-doc <!nodoc>,
+Standards-Version: 4.6.2
+Rules-Requires-Root: no
+Homepage: https://github.com/abravalheri/validate-pyproject
+Vcs-Git: https://salsa.debian.org/python-team/packages/validate-pyproject.git
+Vcs-Browser: https://salsa.debian.org/python-team/packages/validate-pyproject
 
-Package: template-repository
-Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Package: python-validate-pyproject-doc
+Architecture: all
+Section: doc
+Depends:
+ ${misc:Depends},
+ ${sphinxdoc:Depends},
+Multi-Arch: foreign
+Description: Automated checks on pyproject.toml by JSON Schema definitions (Documentation)
+ With the approval of PEP 517 and PEP 518, the Python community shifted
+ towards a strong focus on standardisation for packaging software, which
+ allows more freedom when choosing tools during development and make sure
+ packages created using different technologies can interoperate without the
+ need for custom installation procedures.
+ .
+ This shift became even more clear when PEP 621 was also approved, as a
+ standardised way of specifying project metadata and dependencies.
+ .
+ validate-pyproject was born in this context, with the mission of validating
+ pyproject.toml files, and make sure they are compliant with the standards
+ and PEPs. Behind the scenes, validate-pyproject relies on JSON Schema files,
+ which, in turn, are also a standardised way of checking if a given data
+ structure complies with a certain specification.
+ .
+ This package contains the Sphinx based HTML documentation.
+
+Package: python3-validate-pyproject
+Architecture: all
+Depends:
+ python3-fastjsonschema,
+ ${misc:Depends},
+ ${python3:Depends},
+Suggests:
+ python-validate-pyproject-doc,
+Description: Automated checks on pyproject.toml by JSON Schema definitions
+ With the approval of PEP 517 and PEP 518, the Python community shifted
+ towards a strong focus on standardisation for packaging software, which
+ allows more freedom when choosing tools during development and make sure
+ packages created using different technologies can interoperate without the
+ need for custom installation procedures.
+ .
+ This shift became even more clear when PEP 621 was also approved, as a
+ standardised way of specifying project metadata and dependencies.
+ .
+ validate-pyproject was born in this context, with the mission of validating
+ pyproject.toml files, and make sure they are compliant with the standards
+ and PEPs. Behind the scenes, validate-pyproject relies on JSON Schema files,
+ which, in turn, are also a standardised way of checking if a given data
+ structure complies with a certain specification.
+ .
+ This package contains the module for Python 3.

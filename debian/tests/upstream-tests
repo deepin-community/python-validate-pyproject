@@ -1,0 +1,31 @@
+#!/bin/bash
+
+set -e -u
+
+cp -a tests "${AUTOPKGTEST_TMP}"
+
+PYTEST_OPTIONS="-k not \
+test_examples_api and not \
+test_examples_cli and not \
+test_invalid_examples_api and not \
+test_invalid_examples_cli \
+"
+
+for py3vers in $(py3versions -s); do
+    echo
+    echo "***************************"
+    echo "*** Testing with ${py3vers}"
+    echo "***************************"
+    echo
+    cd ${AUTOPKGTEST_TMP} && \
+        echo -e "Content of current working folder:\n" && \
+        ls -la && \
+        echo -e "Running tests...\n" && \
+        "${py3vers}" -m pytest -sv tests "${PYTEST_OPTIONS}"  && \
+        rm -rf .pytest_cache || exit 1
+done
+
+echo
+
+exit 0
+

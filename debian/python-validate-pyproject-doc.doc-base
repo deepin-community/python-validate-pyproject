@@ -1,0 +1,10 @@
+Document: validate-pyproject
+Title: Automated checks on pyproject.toml powered by JSON Schema definitions
+Author: 2021 Anderson Bravalheri <andersonbravalheri@gmail.com>
+Abstract: validate-pyproject is created to validate pyproject.toml files,
+ and make sure they are compliant with the standards and PEPs.
+Section: Web Development
+
+Format: HTML
+Index: /usr/share/doc/python-validate-pyproject-doc/html/index.html
+Files: /usr/share/doc/python-validate-pyproject-doc/html/*

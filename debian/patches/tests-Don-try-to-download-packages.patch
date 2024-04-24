@@ -1,0 +1,29 @@
+From: Carsten Schoenert <c.schoenert@t-online.de>
+Date: Fri, 30 Dec 2022 12:24:00 +0100
+Subject: tests: Don try to download packages
+
+Forwarded: Not-Needed
+---
+ tests/test_formats.py | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/tests/test_formats.py b/tests/test_formats.py
+index 74f2acc..902a425 100644
+--- a/tests/test_formats.py
++++ b/tests/test_formats.py
+@@ -320,6 +320,7 @@ class TestClassifiers:
+         assert isinstance(classifiers, str)
+         assert bytes(classifiers, "utf-8")
+ 
++    @pytest.mark.skip(reason="no downloads allowed while package build")
+     def test_downloaded(self, monkeypatch):
+         if os.name != "posix":
+             # Mock on Windows (problems with SSL)
+@@ -377,6 +378,7 @@ class TestClassifiers:
+         assert not validator.downloaded
+ 
+ 
++@pytest.mark.skip(reason="no downloads allowed while package build")
+ def test_private_classifier():
+     assert formats.trove_classifier("private :: Keep Off PyPI") is True
+     assert formats.trove_classifier("private:: Keep Off PyPI") is False

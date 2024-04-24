@@ -1,0 +1,39 @@
+From: Carsten Schoenert <c.schoenert@t-online.de>
+Date: Fri, 30 Dec 2022 21:07:45 +0100
+Subject: README: Drop linking to external graphics
+
+Having these graphics is no gain within Debian and might be a privacy
+issue, so dropping the references.
+
+Forwarded: Not-Needed
+---
+ README.rst | 16 ----------------
+ 1 file changed, 16 deletions(-)
+
+diff --git a/README.rst b/README.rst
+index 768d3ad..0c225d4 100644
+--- a/README.rst
++++ b/README.rst
+@@ -11,22 +11,6 @@
+         :alt: Twitter
+         :target: https://twitter.com/validate-pyproject
+ 
+-.. image:: https://img.shields.io/badge/-PyScaffold-005CA0?logo=pyscaffold
+-    :alt: Project generated with PyScaffold
+-    :target: https://pyscaffold.org/
+-.. image:: https://api.cirrus-ci.com/github/abravalheri/validate-pyproject.svg?branch=main
+-    :alt: Built Status
+-    :target: https://cirrus-ci.com/github/abravalheri/validate-pyproject
+-.. image:: https://readthedocs.org/projects/validate-pyproject/badge/?version=latest
+-    :alt: ReadTheDocs
+-    :target: https://validate-pyproject.readthedocs.io
+-.. image:: https://img.shields.io/coveralls/github/abravalheri/validate-pyproject/main.svg
+-    :alt: Coveralls
+-    :target: https://coveralls.io/r/abravalheri/validate-pyproject
+-.. image:: https://img.shields.io/pypi/v/validate-pyproject.svg
+-    :alt: PyPI-Server
+-    :target: https://pypi.org/project/validate-pyproject/
+-
+ |
+ 
+ ==================

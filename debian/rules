@@ -1,4 +1,41 @@
 #!/usr/bin/make -f
+# -*- makefile -*-
+
+#export DH_VERBOSE=1
+
+include /usr/share/dpkg/pkg-info.mk
+
+BUILD_DATE  = $(shell LC_ALL=C date -u "+%d %B %Y" -d "@$(SOURCE_DATE_EPOCH)")
+SPHINXOPTS := -E -N -D html_last_updated_fmt="$(BUILD_DATE)"
+
+export PYBUILD_NAME=validate_pyproject
+export PYBUILD_BEFORE_TEST=cp {dir}/src/validate_pyproject/*.json {build_dir}/validate_pyproject && \
+cp {dir}/src/validate_pyproject/plugins/*.json {build_dir}/validate_pyproject/plugins && \
+cp {dir}/src/validate_pyproject/pre_compile/*.template {build_dir}/validate_pyproject/pre_compile
+export PYBUILD_AFTER_INSTALL=rm -rf {destdir}/usr/lib/python3*/dist-packages/.coverage
+export PYBUILD_TEST_ARGS=-k 'not \
+test_examples_api and not \
+test_examples_cli and not \
+test_invalid_examples_api and not \
+test_invalid_examples_cli'
 
 %:
-	dh $@
+	dh $@ --buildsystem=pybuild
+
+override_dh_sphinxdoc:
+ifeq (,$(findstring nodoc, $(DEB_BUILD_OPTIONS)))
+	PYTHONPATH=src python3 -m sphinx -b html $(SPHINXOPTS) docs $(CURDIR)/debian/python-validate-pyproject-doc/usr/share/doc/python-validate-pyproject-doc/html
+	dh_sphinxdoc
+endif
+
+override_dh_compress:
+	dh_compress -X changelog.html
+
+override_dh_clean:
+	dh_clean
+	rm -rf .mypy_cache
+	rm -f docs/api/modules.rst \
+		  docs/api/validate_pyproject.plugins.rst \
+		  docs/api/validate_pyproject.pre_compile.rst \
+		  docs/api/validate_pyproject.rst \
+		  docs/api/validate_pyproject.vendoring.rst
