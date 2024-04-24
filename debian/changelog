@@ -1,5 +1,68 @@
-template-repository (1.0-1) unstable; urgency=medium
+python-validate-pyproject (0.16-1) unstable; urgency=medium
 
-  * Initial release
+  * [62f2eb4] New upstream version 0.16
+  * [9121f42a] Rebuild patch queue from patch-queue branch
+    Just refresh the existing patches.
+  * [342b7f8] d/rules: Extend dh_clean to clean up .mypy_cache folder
+  * [7d399b1] d/rules: Add some tests to exclude
+  * [09debec] autopkgtest: Exclude same tests here too
+  * [28d0d11] d/copyright: Update year data
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- Carsten Schoenert <c.schoenert@t-online.de>  Sat, 27 Jan 2024 19:01:35 +0100
+
+python-validate-pyproject (0.15-1) unstable; urgency=medium
+
+  * [fa74cf0] New upstream version 0.15
+
+ -- Carsten Schoenert <c.schoenert@t-online.de>  Wed, 06 Dec 2023 19:59:38 +0100
+
+python-validate-pyproject (0.14-1) unstable; urgency=medium
+
+  * [a8525e1] New upstream version 0.14
+  * [d28ad0d] d/rules: Add target override_dh_clean
+    (Closes: #1045381)
+
+ -- Carsten Schoenert <c.schoenert@t-online.de>  Mon, 04 Sep 2023 19:39:18 +0530
+
+python-validate-pyproject (0.13-1) unstable; urgency=medium
+
+  * [e5c06bf] New upstream version 0.13
+
+ -- Carsten Schoenert <c.schoenert@t-online.de>  Wed, 24 May 2023 10:58:56 +0200
+
+python-validate-pyproject (0.12.2-1) unstable; urgency=medium
+
+  * [0c20071] New upstream version 0.12.2
+
+ -- Carsten Schoenert <c.schoenert@t-online.de>  Wed, 29 Mar 2023 12:26:58 +0200
+
+python-validate-pyproject (0.12.1-1) unstable; urgency=medium
+
+  * [0dcdd37] New upstream version 0.12.1
+
+ -- Carsten Schoenert <c.schoenert@t-online.de>  Sun, 05 Feb 2023 13:41:56 +0100
+
+python-validate-pyproject (0.11-2) unstable; urgency=medium
+
+  * [39c9aa8] d/watch: Ignore versions containing 'a' or 'b' too
+
+ -- Carsten Schoenert <c.schoenert@t-online.de>  Tue, 24 Jan 2023 08:49:52 +0100
+
+python-validate-pyproject (0.11-1) unstable; urgency=medium
+
+  * [423ce2e] New upstream version 0.11
+  * [11c5d2d] Rebuild patch queue from patch-queue branch
+    Dropped patches (not needed anymore):
+    src-Don-t-use-vendored-fastjsonschema.patch
+    tests-Don-t-use-the-_vendor-folder.patch
+  * [8a8445b] d/copyright: Update content data
+  * [b3787f2] d/README.source: Remove paragraph about vendored data
+
+ -- Carsten Schoenert <c.schoenert@t-online.de>  Wed, 18 Jan 2023 16:30:51 +0100
+
+python-validate-pyproject (0.10.1+ds-1) unstable; urgency=medium
+
+  * [e85aa94] New upstream version 0.10.1+ds
+  * [413ef91] First and basic Debianization (Closes: #1028188)
+
+ -- Carsten Schoenert <c.schoenert@t-online.de>  Sat, 14 Jan 2023 12:39:42 +0100

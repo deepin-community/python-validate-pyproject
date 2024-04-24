@@ -1,0 +1,5 @@
+tests-Don-try-to-download-packages.patch
+tests-Ignore-tests-related-to-vendored-stuff.patch
+docs-Use-inventary-from-packages.patch
+docs-Exclude-some-not-available-Sphinx-extensions.patch
+README-Drop-linking-to-external-graphics.patch

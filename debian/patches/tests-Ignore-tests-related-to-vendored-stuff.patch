@@ -1,0 +1,75 @@
+From: Carsten Schoenert <c.schoenert@t-online.de>
+Date: Fri, 30 Dec 2022 11:09:04 +0100
+Subject: tests: Ignore tests related to vendored stuff
+
+Some tests within the test suite are based on the folder structure
+related to the included vendored source of fastjsonschema.
+As we patched the upstream source to use the Debian packaged version of
+fastjsonschema these test would expected fail.
+
+Forwarded: Not-Needed
+---
+ tests/test_pre_compile.py | 4 ++++
+ tests/test_vendoring.py   | 3 +++
+ 2 files changed, 7 insertions(+)
+
+diff --git a/tests/test_pre_compile.py b/tests/test_pre_compile.py
+index 29bad4e..113bd1e 100644
+--- a/tests/test_pre_compile.py
++++ b/tests/test_pre_compile.py
+@@ -63,6 +63,7 @@ def _pre_compile_checks(path: Path):
+     assert re.search(error, str(exc_info.value.output, "utf-8"))
+ 
+ 
++@pytest.mark.skip(reason="not needed within Debian, we use the packaged fastjsonschema package")
+ def test_pre_compile_api(tmp_path):
+     path = Path(tmp_path)
+     pre_compile(path, MAIN_FILE)
+@@ -78,6 +79,7 @@ def test_pre_compile_api(tmp_path):
+     assert "from fastjsonschema" not in file_contents
+ 
+ 
++@pytest.mark.skip(reason="not needed within Debian, we use the packaged fastjsonschema package")
+ def test_vendoring_cli(tmp_path):
+     path = Path(tmp_path)
+     cli.run(["-O", str(path), "-M", MAIN_FILE])
+@@ -147,6 +149,7 @@ def pre_compiled_validate(monkeypatch):
+     return _validate
+ 
+ 
++@pytest.mark.skip(reason="not needed within Debian, we use the packaged fastjsonschema package")
+ @pytest.mark.parametrize("pre_compiled", _PRE_COMPILED)
+ def test_examples_api(tmp_path, pre_compiled_validate, example, pre_compiled):
+     toml_equivalent = tomllib.loads(example.read_text())
+@@ -154,6 +157,7 @@ def test_examples_api(tmp_path, pre_compiled_validate, example, pre_compiled):
+     assert pre_compiled_validate(pre_compiled_path, toml_equivalent) is not None
+ 
+ 
++@pytest.mark.skip(reason="not needed within Debian, we use the packaged fastjsonschema package")
+ @pytest.mark.parametrize("pre_compiled", _PRE_COMPILED)
+ def test_invalid_examples_api(
+     tmp_path, pre_compiled_validate, invalid_example, pre_compiled
+diff --git a/tests/test_vendoring.py b/tests/test_vendoring.py
+index d313ec2..ec86c12 100644
+--- a/tests/test_vendoring.py
++++ b/tests/test_vendoring.py
+@@ -3,16 +3,19 @@ import pytest
+ from validate_pyproject.vendoring import cli, vendorify
+ 
+ 
++@pytest.mark.skip(reason="not needed within Debian, we use the packaged fastjsonschema package")
+ def test_api(tmp_path):
+     with pytest.warns(DeprecationWarning, match="will be removed"):
+         vendorify(tmp_path)
+ 
+ 
++@pytest.mark.skip(reason="not needed within Debian, we use the packaged fastjsonschema package")
+ def test_cli(tmp_path):
+     with pytest.warns(DeprecationWarning, match="will be removed"):
+         cli.run(["-O", str(tmp_path)])
+ 
+ 
++@pytest.mark.skip(reason="not needed within Debian, we use the packaged fastjsonschema package")
+ def test_main(tmp_path):
+     with pytest.warns(DeprecationWarning, match="will be removed"):
+         cli.main(["-O", str(tmp_path)])

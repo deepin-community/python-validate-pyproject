@@ -1,0 +1,5 @@
+# The *.json and the *.template files are not beeing picked for install,
+# but they are required within the package, install by the sequencer then.
+src/validate_pyproject/*.json                 usr/lib/python3/dist-packages/validate_pyproject
+src/validate_pyproject/plugins/*.json         usr/lib/python3/dist-packages/validate_pyproject/plugins
+src/validate_pyproject/pre_compile/*.template usr/lib/python3/dist-packages/validate_pyproject/pre_compile 
